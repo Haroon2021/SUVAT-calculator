@@ -3,29 +3,19 @@ const form = document.querySelector('form');
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-
     // Line below takes the form data from the HTML page and we have to make sure that 
     // the name tags are filled in the HTML elements otherwise we will not get proper key pair values
     // when the data is transformed
     const SUVATDATA = new FormData(form);
     // The linke below transforms the data into data wiht Key value pairs
     const SUVATDATATRANSFORMED = Object.fromEntries(SUVATDATA);
-    
 
-    const u = parseFloat(SUVATDATATRANSFORMED['U'])
+    // Picking out the SUVAT values from the transformed data 
+    const u = parseFloat(SUVATDATATRANSFORMED['U']);
     const v = parseFloat(SUVATDATATRANSFORMED['V']);
     const a = parseFloat(SUVATDATATRANSFORMED['A']);
     const s = parseFloat(SUVATDATATRANSFORMED['S']);
     const t = parseFloat(SUVATDATATRANSFORMED['T']);
-    
-    console.log("V")
-    console.log(v) 
-    console.log(isNaN(v))
-    console.log(isNaN(u))
-    console.log(isNaN(s))
-    console.log(SUVATDATATRANSFORMED['V'])
-    console.log(parseFloat(SUVATDATATRANSFORMED['V']))
-
 
     if (isNaN(v) && isNaN(s) && u != "" && a != "" && t != "" ) {
         document.querySelector(".Voutput").innerText = `v = u + a*t \n v = ${u} + ${a} * ${t} \n v = ${u} + ${a*t}  \n v = ${u+a*t} ms-1`
@@ -124,12 +114,6 @@ form.addEventListener('submit', (e) => {
     } else {
         document.querySelector(".errorhanger").innerText = "Please select only 3 variables"
     } 
-    
-
-    
-
-
-    
     
     
 })
