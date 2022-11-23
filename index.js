@@ -10,16 +10,74 @@ form.addEventListener('submit', (e) => {
     const SUVATDATA = new FormData(form);
     // The linke below transforms the data into data wiht Key value pairs
     const SUVATDATATRANSFORMED = Object.fromEntries(SUVATDATA);
-    const u = parseFloat(SUVATDATATRANSFORMED['U']);
+    
+
+    const u = parseFloat(SUVATDATATRANSFORMED['U'])
     const v = parseFloat(SUVATDATATRANSFORMED['V']);
     const a = parseFloat(SUVATDATATRANSFORMED['A']);
     const s = parseFloat(SUVATDATATRANSFORMED['S']);
     const t = parseFloat(SUVATDATATRANSFORMED['T']);
-    const V = u + (a*t);
-    console.log(V);
     
-    document.querySelector(".Voutput").innerText = `V = U + a*t \n V = ${u} + ${a} * ${t} \n V = ${u} + ${a*t}  \n V = ${V} ms-1`
+    console.log("V")
+    console.log(v) 
+    console.log(isNaN(v))
+    console.log(isNaN(u))
+    console.log(isNaN(s))
+    console.log(SUVATDATATRANSFORMED['V'])
+    console.log(parseFloat(SUVATDATATRANSFORMED['V']))
 
+
+    if (isNaN(v) && isNaN(s) && u != "" && a != "" && t != "" ) {
+        document.querySelector(".Voutput").innerText = `v = u + a*t \n v = ${u} + ${a} * ${t} \n v = ${u} + ${a*t}  \n v = ${u+a*t} ms-1`
+        document.querySelector(".Soutput").innerText = `s = u*t + 0.5*a*t^2 \n s = ${u} * ${t} + 0.5 * ${a} * ${t} ^ 2 \n s = ${u*t} + 0.5 * ${a}*${t*t}  \n s = ${u*t} + 0.5 * ${a*t*t}  \n s = ${u*t} + ${0.5*a*t*t}  \n s = ${u*t + 0.5*a*t*t} meters `
+        document.querySelector(".Uoutput").innerText = `u = ${u} ms-1`
+        document.querySelector(".Aoutput").innerText = `a = ${a} ms-2`
+        document.querySelector(".Toutput").innerText = `t = ${t} seconds`
+
+    } else if (isNaN(u) && isNaN(s) && v != "" && a != "" && t != "") {
+        document.querySelector(".Voutput").innerText = `v = ${v} ms-1`
+        document.querySelector(".Soutput").innerText = `s = v*t - 0.5*a*t^2  \n s = ${v}*${t} - 0.5*${a}*${t}^2 \n s = ${v*t} - 0.5*${a}*${t^2} \n s = ${v*t} - 0.5*${a*(t^2)} \n s = ${v*t} - ${0.5*a*(t^2)} \n s = ${(v*t) - (0.5*a*(t^2))} meters`
+        document.querySelector(".Uoutput").innerText = `v = u + a*t \n ${v} = u + ${a}*${t} \n ${v} = u + ${a*t} \n u = ${v} - ${a*t} \n u = ${v-a*t}   \n `
+        document.querySelector(".Aoutput").innerText = `a = ${a} ms-2`
+        document.querySelector(".Toutput").innerText = `t = ${t} seconds`
+
+    } else if (isNaN(a) && isNaN(t) && s != "" && u != "" && v != "") {
+        document.querySelector(".Voutput").innerText = `v = ${v} ms-1`
+        document.querySelector(".Soutput").innerText = `s = ${s} meters`
+        document.querySelector(".Uoutput").innerText = `u = ${u} ms-1`
+        document.querySelector(".Aoutput").innerText = `v^2 = u^2 + 2 * a * s \n ${v}^2 = ${u}^2 + 2 * a * ${s} \n ${v*v} = ${u*u} + ${2*s}*a \n  ${(v*v - u*u)} = ${2*s} * a \n a= ${(v*v - u*u)/(2*s)} ms-2  \n`
+        document.querySelector(".Toutput").innerText = `s=t*(u+v)/2 \n ${s}=t*(${u}+${v})/2  \n ${s}=t*(${u+v})/2 \n ${s*2}=t*(${u+v}) \n t = ${(s*2)/(u+v)} seconds`
+    
+    } else if (isNaN(v) && isNaN(t) && s != "" && u != "" && a != "") {
+
+        // adapt for 2 solutions
+        let v1 = Math.sqrt((u*u)+ (2*a*s));
+        let v2 = -1*Math.sqrt((u*u)+ (2*a*s));
+        document.querySelector(".Voutput").innerText = `v^2 = u^2 + 2*a*s \n  v^2 = ${u}^2 + 2*${a}*${s} \n v^2 = ${u*u} + ${2*a*s} \n v^2 = ${(u*u)+ (2*a*s)} \n v1 = ${Math.sqrt((u*u)+ (2*a*s))} ms-1 \n v2 = ${-1*Math.sqrt((u*u)+ (2*a*s))} ms-1 `
+        document.querySelector(".Soutput").innerText = `s = ${s} meters`
+        document.querySelector(".Uoutput").innerText = `u = ${u} ms-1`
+        document.querySelector(".Aoutput").innerText = `a = ${a} ms-2`
+        document.querySelector(".Toutput").innerText = `Find v (as above) then use this along with v = u + a*t \n using v1 we get: \n v = u + a*t \n ${v1} = ${u} + ${a} * t \n ${(v1 - u)} = t * ${a} \n t1 = ${(v1 - u)/(a)} seconds \n \n using v2 we get: \n v = u + a*t \n ${v2} = ${u} + ${a} * t \n ${v2-u} = ${a} * t \n t2 = ${(v2-u)/(a)} seconds`
+    
+    } else if (isNaN(v) && isNaN(a) && s != "" && u != "" && t != "") {
+        document.querySelector(".Voutput").innerText = `s=t*(u+v)/2 \n ${s}=${t}*(${u}+v)/2 \n ${(2*s)}=${t}*(${u}+v) \n ${(2*s)/(t)}=${u}+v \n v = ${((2*s)/(t)) - (u)} ms-1`
+        document.querySelector(".Soutput").innerText = `s = ${s} meters`
+        document.querySelector(".Uoutput").innerText = `u = ${u} ms-1`
+        document.querySelector(".Aoutput").innerText = `s = u*t + 0.5*a*t^2 \n ${s} = ${u}*${t} + 0.5*a*${t}^2 \n ${s} = ${u*t} + 0.5*a*${t*t} \n ${s - (u*t)} = 0.5*a*${t*t} \n ${2*(s-(u*t))} = a*${t*t} \n a = ${(2*(s-(u*t)))/(t*t)} ms-2  `
+        document.querySelector(".Toutput").innerText = `t = ${t}`
+    
+    } else if (isNaN(u) && isNaN(t) && s != "" && v != "" && a != "") {
+        let u1 = Math.sqrt(v*v)/(a*s*2);
+        let u2 = -1*Math.sqrt(v*v)/(a*s*2) ;
+        document.querySelector(".Voutput").innerText = `v = ${v} ms-1 `
+        document.querySelector(".Soutput").innerText = `s = ${s} meters`
+        document.querySelector(".Uoutput").innerText = `v^2 = u^2 + 2* a * s \n ${v}^2 = u^2 + 2* ${a} * ${s} \n ${v*v} = u^2 + ${a*s*2}  \n  u^2 = ${(v*v)/(a*s*2)}    \n u1 = ${u1} ms-1 or u2 = ${u2} ms-1`
+        document.querySelector(".Aoutput").innerText = `a = ${a} ms-1 `
+        document.querySelector(".Toutput").innerText = `Take the values of u above and calculate t using s = (u + v) * t ) / 2 \n using u1 we get: ${s} = (${Math.sqrt(v*v)/(a*s*2)} + ${v}) * t / 2 \n ${2*s} = (${(Math.sqrt(v*v)/(a*s*2))+v} ) * t  \n  t1 = ${(2*s/(((Math.sqrt(v*v)/(a*s*2))+v)))} seconds \n now using u2 we get: s = (u + v) * t ) / 2 \n ${s} = (${-1*Math.sqrt(v*v)/(a*s*2)} + ${v}) * t / 2 \n ${2*s} = (${v-(Math.sqrt(v*v)/(a*s*2))} ) * t \n ${2*s} = (${v-(Math.sqrt(v*v)/(a*s*2))} ) * t \n t = ${(2*s)/ (v-(Math.sqrt(v*v)/(a*s*2)))} seconds`
+    } else {
+        document.querySelector(".errorhanger").innerText = "Please select only 3 variables"
+    }
+    
     
     
     
