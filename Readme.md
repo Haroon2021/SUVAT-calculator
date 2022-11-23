@@ -1,5 +1,5 @@
 The purpose of this calculator is for learning the SUVAT formulas
-Input 3 quantities and the other 2 quantities are calculated for you along with the working out
+Input 3 quantities and the other 2 quantities are calculated for you along with the working out.
 
 Using the following formulas to calculate the values:
 
