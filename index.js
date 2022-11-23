@@ -107,10 +107,28 @@ form.addEventListener('submit', (e) => {
         document.querySelector(".Aoutput").innerText = `v = u + a * t \n ${v} = ${u} + a * ${t} \n ${v-u} = a * ${t} \n a = ${(v-u)/(t)} ms-2 \n`
         document.querySelector(".Toutput").innerText = `t = ${t}`
     
+    } else if (isNaN(v) && isNaN(s) && u != "" && a != "" && t != "" ) {
+        document.querySelector(".Voutput").innerText = `v = u + a*t \n v = ${u} + ${a} * ${t} \n v = ${u} + ${a*t}  \n v = ${u+a*t} ms-1`
+        document.querySelector(".Soutput").innerText = `s = u*t + 0.5*a*t^2 \n s = ${u} * ${t} + 0.5 * ${a} * ${t} ^ 2 \n s = ${u*t} + 0.5 * ${a}*${t*t}  \n s = ${u*t} + 0.5 * ${a*t*t}  \n s = ${u*t} + ${0.5*a*t*t}  \n s = ${u*t + 0.5*a*t*t} meters `
+        document.querySelector(".Uoutput").innerText = `u = ${u} ms-1`
+        document.querySelector(".Aoutput").innerText = `a = ${a} ms-2`
+        document.querySelector(".Toutput").innerText = `t = ${t} seconds`
+
+    } else if (isNaN(u) && isNaN(s) && v != "" && a != "" && t != "") {
+        document.querySelector(".Voutput").innerText = `v = ${v} ms-1`
+        document.querySelector(".Soutput").innerText = `s = v*t - 0.5*a*t^2  \n s = ${v}*${t} - 0.5*${a}*${t}^2 \n s = ${v*t} - 0.5*${a}*${t^2} \n s = ${v*t} - 0.5*${a*(t^2)} \n s = ${v*t} - ${0.5*a*(t^2)} \n s = ${(v*t) - (0.5*a*(t^2))} meters`
+        document.querySelector(".Uoutput").innerText = `v = u + a*t \n ${v} = u + ${a}*${t} \n ${v} = u + ${a*t} \n u = ${v} - ${a*t} \n u = ${v-a*t}   \n `
+        document.querySelector(".Aoutput").innerText = `a = ${a} ms-2`
+        document.querySelector(".Toutput").innerText = `t = ${t} seconds`
+
     } else {
         document.querySelector(".errorhanger").innerText = "Please select only 3 variables"
-    }
+    } 
     
+
+    
+
+
     
     
     
