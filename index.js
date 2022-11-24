@@ -16,13 +16,7 @@ form.addEventListener('submit', (e) => {
     const a = parseFloat(SUVATDATATRANSFORMED['A']);
     const s = parseFloat(SUVATDATATRANSFORMED['S']);
     const t = parseFloat(SUVATDATATRANSFORMED['T']);
-    console.log(v);
-    console.log(typeof v);
-    console.log("_________________")
-    console.log(s != "");
-    console.log(s != "" || s == 0);
-    console.log("_________________")
-    console.log(isNaN(v));
+    
 
     if (isNaN(v) && isNaN(s) && (u!= "" || u == 0)&& (a!= "" || a == 0)&& (t!= "" || t == 0)) {
         document.querySelector(".Voutput").innerText = `v = u + a*t \n v = ${u} + ${a} * ${t} \n v = ${u} + ${a*t}  \n v = ${u+a*t} ms-1`
